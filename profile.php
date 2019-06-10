@@ -8,6 +8,9 @@
 	<link href="ressources/css/dashboard.css?v=1.4.0" rel="stylesheet">
 </head>
 <body>
+	<?php
+	include("header.php")
+	?>
 	<div class="wrapper">
 		<div class="sidebar" >
 			<div class="sidebar" >

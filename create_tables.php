@@ -13,8 +13,6 @@ function create_table() {
       `heure_naissance` int(11) NOT NULL,
       `nom_pere` int(11) NOT NULL,
       `nom_mere` int(11) NOT NULL,
-      `nom_gpere` int(11) NOT NULL,
-      `nom_gmere` int(11) NOT NULL,
       `mail` int(11) NOT NULL,
        PRIMARY KEY(`id_uti`)
       ) ENGINE=InnoDB;";
@@ -33,19 +31,46 @@ function create_table() {
       ) ENGINE=InnoDB;";
 
 
+      $qTb_MARIAGE = "CREATE TABLE IF NOT EXISTS `mariage`(
+      `id_mar` int(11) NOT NULL AUTO_INCREMENT,
+       `id_pere` int(11) NOT NULL,
+       `id_mere` int(11) NOT NULL,
+       `date_mar` int(11) NOT NULL,
+       `comment` varchar(255) NOT NULL,
+       PRIMARY KEY(`id_mar`)
+      ) ENGINE=InnoDB;";
 
-    //echo "Connexion au serveur MySQL.";
+      $qTb_DIVORCE = "CREATE TABLE IF NOT EXISTS `divorce`(
+      `id_div` int(11) NOT NULL AUTO_INCREMENT,
+       `id_pere` int(11) NOT NULL,
+       `id_mere` int(11) NOT NULL,
+       `date_div` int(11) NOT NULL,
+       `comment` varchar(255) NOT NULL,
+       PRIMARY KEY(`id_div`)
+      ) ENGINE=InnoDB;";
+
+
+
+echo "Connexion au serveur MySQL.";
     $db = con();
 
-   //echo "Creation de la table utilisateur.";
+echo "Creation de la table utilisateur.";
     mysqli_query($db, $qTb_UTILISATEUR );
     echo mysqli_info($db);
     echo mysqli_error($db);
 
-
-
-    //echo "Creation de la table famille_utilisateur.";
+echo "Creation de la table famille_utilisateur.";
     mysqli_query($db, $qTb_FAMIL_UTI);
+    echo mysqli_info($db);
+    echo mysqli_error($db);
+
+echo "Creation de la table mariage
+    mysqli_query($db, $qTb_MARIAGE);
+    echo mysqli_info($db);
+    echo mysqli_error($db);
+
+echo "Creation de la table divorce
+    mysqli_query($db, $qTb_DIVORCE);
     echo mysqli_info($db);
     echo mysqli_error($db);
 
