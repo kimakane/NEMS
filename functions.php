@@ -14,9 +14,9 @@ function con() {
 
 // Obtenir l'id d'un utilisateur
 
-function get_id($nom,$date_naissance,$nom_mere){
+function get_id($nom,$date_naissance,$pseudo){
   $con = con();
-  $res = mysqli_query($con, "SELECT id_uti FROM utilisateur WHERE nom =$nom, date_naissance = $date_naissance,nom_mere = $nom_mere ");
+  $res = mysqli_query($con, "SELECT id_uti FROM utilisateur WHERE nom =$nom, date_naissance = $date_naissance,pseudo = $pseudo ");
   $assoc = mysqli_fetch_all($res, MYSQLI_ASSOC);
   mysqli_free_result($res);
   mysqli_close($con);
@@ -26,20 +26,20 @@ function get_id($nom,$date_naissance,$nom_mere){
 //obttenir le nom d'un utilisateur connaissant son id
 function get_name($id_uti){
   $con = con();
-  $res = mysqli_query($con, "SELECT nom,prenom,pseudo,nom_pere,nom_mere,date_naissance,lieu_naissance,heure_naissance FROM utilisateur WHERE id_uti = $id");
+  $res = mysqli_query($con, "SELECT nom,prenom,pseudo,date_naissance,lieu_naissance,heure_naissance FROM utilisateur WHERE id_uti = $id");
   $assoc = mysqli_fetch_all($res, MYSQLI_ASSOC);
   mysqli_free_result($res);
   mysqli_close($con);
-  return $assoc['nom,prenom,pseudo,nom_pere,nom_mere,date_naissance,lieu_naissance,heure_naissance'];
+  return $assoc['nom,prenom,pseudo,date_naissance,lieu_naissance,heure_naissance'];
 }
 
 
 
 // Ajoute un utilisateur
-function ajoutUtilisateur($nom,$prenom,$pseudo,$nom_pere,$nom_mere,$date_naissance,$lieu_naissance,$heure_naissance) {
+function ajoutUtilisateur($nom,$prenom,$pseudo,$date_naissance,$lieu_naissance,$heure_naissance) {
   $con = con();
-  $stmt = mysqli_prepare($con, "INSERT INTO utilisateur (nom,prenom,pseudo,nom_pere,nom_mere,date_naissance,lieu_naissance,heure_naissance) VALUES (?,?,?,?,?,?,?,?)");
-  mysqli_stmt_bind_param($stmt, 'sssssisi',$nom,$prenom,$pseudo,$nom_pere,$nom_mere,$date_naissance,$lieu_naissance,$heure_naissance);
+  $stmt = mysqli_prepare($con, "INSERT INTO utilisateur (nom,prenom,pseudo,date_naissance,lieu_naissance,heure_naissance) VALUES (?,?,?,?,?,?)");
+  mysqli_stmt_bind_param($stmt, 'sssisi',$nom,$prenom,$pseudo,$date_naissance,$lieu_naissance,$heure_naissance);
   mysqli_stmt_execute($stmt);
   mysqli_close($con);
 }
@@ -52,10 +52,10 @@ function supprUtilisateur($id_uti) {
   mysqli_close($con);
 }
 // Édite un Utilisateur
-function editeUtilisateur($id_uti,$nom,$prenom,$pseudo,$nom_pere,$nom_mere,$date_naissance,$lieu_naissance,$heure_naissance) {
+function editeUtilisateur($id_uti,$nom,$prenom,$pseudo,$date_naissance,$lieu_naissance,$heure_naissance) {
   $con = con();
-  $stmt = mysqli_prepare($con, "UPDATE utilisateur SET nom = ?, prenom = ?, pseudo = ?, nom_pere = ?, nom_mere= ?, date_naissance = ?, heure_naissance = ?  WHERE id_uti = ?");
-  mysqli_stmt_bind_param($stmt, 'sssssisii',$nom,$prenom,$pseudo,$nom_pere,$nom_mere,$date_naissance,$lieu_naissance,$heure_naissance,$id_uti);
+  $stmt = mysqli_prepare($con, "UPDATE utilisateur SET nom = ?, prenom = ?, pseudo = ?, date_naissance = ?, heure_naissance = ?  WHERE id_uti = ?");
+  mysqli_stmt_bind_param($stmt, 'sssisii',$nom,$prenom,$pseudo,$date_naissance,$lieu_naissance,$heure_naissance,$id_uti);
   mysqli_stmt_execute($stmt);
   mysqli_close($con);
 }
