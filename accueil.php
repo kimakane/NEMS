@@ -8,7 +8,7 @@
     <button type="button" class="btn btn-outline-danger">Déconnexion</button>
     <div class="jumbotron jumbotron-fluid" style="background-color: #800080;">
       <div class="container">
-        <h1 class="display-4"><center>Accueil</center></h1>
+        <h1 class="display-4"><center>NEMS</center></h1>
         <p class="lead"><center>Vous pouvez accéder à vos informations personnelles d'ici.</center></p>
       </div>
     </div>
@@ -21,9 +21,9 @@
             <p class="card-text">Prénom : </p>
             <p class="card-text">Âge :</p>
             <p class="card-text">Situation :</p>
-            <a href="#" class="btn btn-primary">Extrait de naissance</a>
+            <a href="#" class="btn btn-primary" style="background-color: black;">Extrait de naissance</a>
           </div>
         </div>
       </div>
-      <a href="#" class="btn btn-primary">Nouvelle déclaration</a>
+      <a href="#" class="btn btn-primary" style="background-color: black;">Nouvelle déclaration</a>
   </body>    

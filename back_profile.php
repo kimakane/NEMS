@@ -1,10 +1,12 @@
 <?php
 include("con_status.php");
 include("functions.php");
-$con = con();
-$current_uti=1;
-$res=mysqli_query($con, "SELECT * FROM utilisateur  WHERE id_uti = $current_uti");
-$uti = mysqli_fetch_assoc($res);
+//$con = con();
+$current_uti = 3;
+$uti = Utilisateur($current_uti);
+//var_dump($uti);
+/* $res=mysqli_query($con, "SELECT * FROM utilisateur  WHERE id_uti = $current_uti");
+$uti = mysqli_fetch_assoc($res); */
 ?>
 <tbody>
   <tr>
@@ -33,11 +35,21 @@ $uti = mysqli_fetch_assoc($res);
   </tr>
   <tr >
     <th scope="row"></th>
-    <td>Nom Mère : <?php echo $uti['nom_pere'] ?></td>
+    <?php
+      $mom_id = getUserMother($current_uti);
+      //var_dump($mom_id);
+      $mom = getUsername($mom_id[0]["id_mere"]);
+      ?>
+    <td>Nom Mère : <?php echo $mom[0]["nom"] ." " .$mom[0]["prenom"]; ?></td>
   </tr>
   <tr >
+  <?php
+      $dad_id = getUserFather($current_uti);
+      //var_dump($mom_id);
+      $dad = getUsername($dad_id[0]["id_pere"]);
+      ?>
     <th scope="row"></th>
-    <td>Nom Père : <?php echo $uti['nom_pere'] ?></td>
+    <td>Nom Père : <?php  echo $dad[0]["nom"] ." " .$dad[0]["prenom"]; ?></td>
 
   </tr>
   <tr >
@@ -47,6 +59,6 @@ $uti = mysqli_fetch_assoc($res);
   </tr>
 </tbody>
 <?php
-  mysqli_free_result($res);
-  mysqli_close($con);
+  /* mysqli_free_result($res);
+  mysqli_close($con); */
 ?>

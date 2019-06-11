@@ -6,7 +6,7 @@ function con_init() {
   return mysqli_connect($GLOBALS['dbServ'], $GLOBALS['dbUser'], $GLOBALS['dbPass']);
 }
 
-// Établi une connexion à la base
+// Établit une connexion à la base
 function con() {
   return mysqli_connect($GLOBALS['dbServ'], $GLOBALS['dbUser'], $GLOBALS['dbPass'],$GLOBALS['dbName']);
 }
@@ -72,12 +72,49 @@ function ListesUtilisateur() {
 function Utilisateur($id_uti) {
   $con = con();
   $stmt = mysqli_prepare($con, "SELECT * FROM utilisateur WHERE id_uti = ?");
-  mysqli_stmt_bind_param($stmt, 'i', $id);
+  mysqli_stmt_bind_param($stmt, 'i', $id_uti);
   mysqli_stmt_execute($stmt);
   $res = mysqli_stmt_get_result($stmt);
   $assoc = mysqli_fetch_assoc($res);
   mysqli_free_result($res);
   mysqli_close($con);
   return $assoc;
+}
+
+// Retourne l'id du père d'un utilisateur ayant un id donné
+function getUserFather($id){
+  $con = con();
+  $res = mysqli_prepare($con, "SELECT id_pere FROM famil_uti WHERE id_uti = ?;");
+  mysqli_stmt_bind_param($res, 'i', $id);
+  mysqli_stmt_execute($res);
+  $data = mysqli_stmt_get_result($res);
+  $father = mysqli_fetch_all($data, MYSQLI_ASSOC);
+  mysqli_free_result($data);
+  mysqli_close($con);
+  return $father;
+}
+
+function getUserMother($id){
+  $con = con();
+  $res = mysqli_prepare($con, "SELECT id_mere FROM famil_uti WHERE id_uti = ?;");
+  mysqli_stmt_bind_param($res, 'i', $id);
+  mysqli_stmt_execute($res);
+  $data = mysqli_stmt_get_result($res);
+  $mother = mysqli_fetch_all($data, MYSQLI_ASSOC);
+  mysqli_free_result($data);
+  mysqli_close($con);
+  return $mother;
+}
+
+function getUserName($id){
+  $con = con();
+  $res = mysqli_prepare($con, "SELECT nom, prenom FROM utilisateur WHERE id_uti = ?;");
+  mysqli_stmt_bind_param($res, 'i', $id);
+  mysqli_stmt_execute($res);
+  $data = mysqli_stmt_get_result($res);
+  $name = mysqli_fetch_all($data, MYSQLI_ASSOC);
+  mysqli_free_result($data);
+  mysqli_close($con);
+  return $name;
 }
 ?>

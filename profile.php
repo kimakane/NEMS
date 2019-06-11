@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-  <title>Profile - NEMS</title>
-<link href="ressources/css/bootstrap.min.css" rel="stylesheet">
+  	<title>Profile - NEMS</title>
+	<link href="ressources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="ressources/css/bootstrap-theme.css" media="screen" rel="stylesheet">
 	<link href="ressources/css/dashboard.css?v=1.4.0" rel="stylesheet">
 </head>

@@ -1,0 +1,28 @@
+#body1 {
+    background-color: black; 
+    /* color: white; */ 
+}
+
+#img1 {
+    padding-top: 5%; 
+    padding-left: 70%; 
+    padding-right: 10%;
+}
+
+#form1 {
+    padding-top: 10%; 
+    padding-left: 10%; 
+    padding-right: 10%;
+}
+
+#button1 {
+    background-image: linear-gradient(to top, #C0C0C0, #800080); 
+    color: black; 
+    border-color: black; 
+    height: 28px; 
+    margin-left: 10px; 
+    padding-top: 2px; 
+    padding-bottom: 0; 
+    display: block; 
+    margin : auto;
+}
