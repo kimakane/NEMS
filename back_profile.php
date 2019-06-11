@@ -26,7 +26,7 @@ $uti = mysqli_fetch_assoc($res); */
   </tr>
   <tr >
     <th scope="row"></th>
-    <td>Naissance : <?php echo $uti['date_naissance'] ?> </td>
+    <td>Date Naissance : <?php echo $uti['date_naissance'] ?> </td>
 
   </tr>
   <tr >
