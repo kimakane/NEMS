@@ -53,7 +53,7 @@ function create_table() {
         `id_fr2` int(11) NOT NULL,
         FOREIGN KEY (id_fr2) REFERENCES utilisateur(id_uti)
         ) ENGINE=InnoDB;";
-    
+
 
       $qTb_DIVORCE = "CREATE TABLE IF NOT EXISTS `divorce`(
       `id_div` int(11) NOT NULL AUTO_INCREMENT,
